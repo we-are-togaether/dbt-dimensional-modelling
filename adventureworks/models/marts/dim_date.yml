@@ -4,7 +4,7 @@ models:
   - name: dim_date
     columns:
       - name: date_key
-        description: The surrogate key of the date table 
+        description: The integer representation key of the date table, e.g. 20110101 for Jan 1st 2011
         tests:
           - unique
           - not_null

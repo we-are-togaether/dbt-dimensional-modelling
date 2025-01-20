@@ -3,7 +3,7 @@ version: 2
 seeds: 
   - name: store
     config: 
-      schema: sales
+      schema: bronze_adventureworks
       column_types: 
         businessentityid: integer
         storename: varchar

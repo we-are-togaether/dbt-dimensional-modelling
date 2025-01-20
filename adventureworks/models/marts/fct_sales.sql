@@ -1,37 +1,38 @@
 with stg_salesorderheader as (
-    select
-        salesorderid,
-        customerid,
-        creditcardid,
-        shiptoaddressid,
-        status as order_status,
-        cast(orderdate as date) as orderdate
-    from {{ ref('salesorderheader') }}
+
+    select *
+    from {{ ref('stg_adventure__salesorderheaders') }}
+
 ),
 
 stg_salesorderdetail as (
-    select
-        salesorderid,
-        salesorderdetailid,
-        productid,
-        orderqty,
-        unitprice,
-        unitprice * orderqty as revenue
-    from {{ ref('salesorderdetail') }}
+
+    select *
+    from {{ ref('stg_adventure__salesorderdetails') }}
+
 )
 
 select
-    {{ dbt_utils.generate_surrogate_key(['stg_salesorderdetail.salesorderid', 'salesorderdetailid']) }} as sales_key,
-    {{ dbt_utils.generate_surrogate_key(['productid']) }} as product_key,
-    {{ dbt_utils.generate_surrogate_key(['customerid']) }} as customer_key,
-    {{ dbt_utils.generate_surrogate_key(['creditcardid']) }} as creditcard_key,
-    {{ dbt_utils.generate_surrogate_key(['shiptoaddressid']) }} as ship_address_key,
-    {{ dbt_utils.generate_surrogate_key(['order_status']) }} as order_status_key,
-    {{ dbt_utils.generate_surrogate_key(['orderdate']) }} as order_date_key,
-    stg_salesorderdetail.salesorderid,
-    stg_salesorderdetail.salesorderdetailid,
-    stg_salesorderdetail.unitprice,
-    stg_salesorderdetail.orderqty,
-    stg_salesorderdetail.revenue
-from stg_salesorderdetail
-inner join stg_salesorderheader on stg_salesorderdetail.salesorderid = stg_salesorderheader.salesorderid
+    {{ dbt_utils.generate_surrogate_key(['sod.sales_order_id', 'sod.sales_order_detail_id']) }} as sales_key,
+    {{ dbt_utils.generate_surrogate_key(['sod.product_id']) }} as product_key,
+    {{ dbt_utils.generate_surrogate_key(['soh.customer_id']) }} as customer_key,
+    {{ dbt_utils.generate_surrogate_key(['soh.ship_to_address_id']) }} as ship_to_address_key,
+    {{ dbt_utils.generate_surrogate_key(['soh.bill_to_address_id']) }} as bill_to_address_key,
+    sod.sales_order_id,
+    sod.sales_order_detail_id,
+    soh.customer_id,
+    soh.ship_to_address_id,
+    soh.bill_to_address_id,
+    sod.product_id,
+    soh.order_date,
+    soh.order_status,
+    sod.unit_price,
+    sod.order_qty,
+    sod.revenue,
+    soh.due_date,
+    soh.ship_date,
+    soh.online_order_flag
+
+from stg_salesorderdetail as sod
+inner join stg_salesorderheader as soh
+    on sod.sales_order_id = soh.sales_order_id

@@ -8,7 +8,7 @@ models:
         tests:
           - not_null
           - unique
-      - name: productid 
+      - name: product_id 
         description: The natural key of the product
         tests:
           - not_null

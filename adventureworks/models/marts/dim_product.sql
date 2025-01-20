@@ -1,27 +1,49 @@
 with stg_product as (
+
     select *
-    from {{ ref('product') }}
+    from {{ ref('stg_adventure__products') }}
+
 ),
 
 stg_product_subcategory as (
+
     select *
-    from {{ ref('productsubcategory') }}
+    from {{ ref('stg_adventure__productsubcategories') }}
+
 ),
 
 stg_product_category as (
+
     select *
-    from {{ ref('productcategory') }}
+    from {{ ref('stg_adventure__productcategories') }}
+
+),
+
+final as (
+
+    select
+        {{ dbt_utils.generate_surrogate_key(['P.product_id']) }} as product_key,
+        p.product_id,
+        p.product_name,
+        p.safety_stock_level,
+        p.finished_goods_flag,
+        p.class,
+        p.make_flag,
+        p.product_number,
+        p.reorder_point,
+        p.standard_cost,
+        p.list_price,
+        p.product_line,
+        p.color,
+        p.sell_start_date,
+        psc.product_subcategory_name,
+        pc.product_category_name
+    from stg_product p
+    left join stg_product_subcategory psc
+        on P.product_subcategory_id = psc.product_subcategory_id
+    left join stg_product_category pc
+        on psc.product_category_id = pc.product_category_id
+
 )
 
-select
-    {{ dbt_utils.generate_surrogate_key(['stg_product.productid']) }} as product_key,
-    stg_product.productid,
-    stg_product.name as product_name,
-    stg_product.productnumber,
-    stg_product.color,
-    stg_product.class,
-    stg_product_subcategory.name as product_subcategory_name,
-    stg_product_category.name as product_category_name
-from stg_product
-left join stg_product_subcategory on stg_product.productsubcategoryid = stg_product_subcategory.productsubcategoryid
-left join stg_product_category on stg_product_subcategory.productcategoryid = stg_product_category.productcategoryid
+select * from final

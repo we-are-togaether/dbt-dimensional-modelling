@@ -1,0 +1,55 @@
+{
+    "dbt.enableNewLineagePanel": true,
+    "python.defaultInterpreterPath": "./.venv/scripts/python",
+    "files.associations": {
+    // the pattern on the left side can be whatever you want: e.g.
+    "*.sql": "jinja-sql", // all .sql files
+
+    // optional: don't format models in `target/` dir
+    "**/target/**": "",
+    // I don't personally use these, but you can also have jinja work for `yaml` and `md` files
+    "**/*.yaml": "jinja-yaml",
+     "**/*.yml": "jinja-yaml",
+    "**/docs/**/*.md": "jinja-md"
+},
+"sqlfluff.executablePath": "C:\\Users\\tsyenlu\\repos\\dbt-dimensional-modelling\\.venv\\scripts\\sqlfluff.exe",
+"sqlfluff.dialect": "duckdb",
+"sqlfluff.linter.arguments": [
+
+],
+"sqlfluff.codeActions.excludeRules.global": false,
+// this is so you can easily jump to your compiled SQL files
+"findrelated.workspaceRulesets": [
+    {
+        "name": "sql",
+        "rules": [
+            {
+                "pattern": "^(.*/)?models/(.*/)?(.+\\.sql)$",
+                "locators": [
+                    "**/compiled/**/$3"
+                ]
+            },
+            {
+                "pattern": "^(.*/)?compiled/(.*/)?(.+\\.sql)$",
+                "locators": [
+                    "**/run/**/$3"
+                ]
+            },
+            {
+                "pattern": "^(.*/)?run/(.*/)?(.+\\.sql)$",
+                "locators": [
+                    "**/models/**/$3"
+                ]
+            }
+        ]
+    }
+],
+"findrelated.applyRulesets": [
+    "sql"
+],
+"sqlfluff.excludeRules": [
+    "ST06",
+    "LT05"
+]
+
+}
