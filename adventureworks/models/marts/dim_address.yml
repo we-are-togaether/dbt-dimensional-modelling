@@ -9,17 +9,17 @@ models:
           - not_null
           - unique
       
-      - name: addressid
+      - name: address_id
         description: The natural key
         tests:
           - not_null
           - unique
 
-      - name: city_name
+      - name: city
         description: The city name
 
-      - name: state_name
+      - name: state_province_name
         description: The state name
 
-      - name: country_name
+      - name: country_region_name
         description: The country name

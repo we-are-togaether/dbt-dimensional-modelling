@@ -29,3 +29,9 @@ models:
     marts:
       +materialized: table
       +schema: marts
+    staging:
+      +materialized: view 
+      +schema: silver
+      adventure:
+        +materialized: view
+        +schema: silver_adventureworks

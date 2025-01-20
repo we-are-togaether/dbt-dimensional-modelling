@@ -9,18 +9,14 @@ models:
           - unique
           - not_null
 
-      - name: customerid
+      - name: customer_id
         description: The natural key of the customer
         tests:
           - not_null
           - unique
           
-      - name: fullname
-        description: The customer name. Adopted as customer_fullname when person name is not null.
+      - name: customer_name
+        description: The customer name. Adopted as person fullname when person, store name when store.
 
-      - name: businessentityid
-      
-      - name: storebusinessentityid
-
-      - name: storename
-        description: The store name.
+      - name: person_type
+        description: The type of person if applicable. '_N/A_' if store.
