@@ -18,14 +18,14 @@ Based on the information provided from the earlier part, we want to create a dim
 
 There are two tables in the sales schema that catch our attention. These two tables can be used to create the fact table for the sales process: 
 
-- The `sales.salesorderheader` table contains information about the credit card used in the order, the shipping address, and the customer. Each record in this table represents an order header that contains one or more order details.
-- The `sales.salesorderdetail` table contains information about the product that was ordered, and the order quantity and unit price, which we can use to calculate the revenue. Each record in this table represents a single order detail.
+- The `salesorderheader` table contains information about the credit card used in the order, the shipping address, and the customer. Each record in this table represents an order header that contains one or more order details.
+- The `salesorderdetail` table contains information about the product that was ordered, and the order quantity and unit price, which we can use to calculate the revenue. Each record in this table represents a single order detail.
 
 ![](img/sales-order-header-detail.png)
 
 *Sales Order Header and Detail*
 
-Let’s define a fact table called `fct_sales` which joins `sales.salesorderheader` and `sales.salesorderdetail` together. Each record in the fact table (also known as the [grain](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/)) is an order detail.
+Let’s define a fact table called `fct_sales` which joins `salesorderheader` and `salesorderdetail` together. Each record in the fact table (also known as the [grain](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/)) is an order detail.
 
 ![](img/fct_sales.png)
 
@@ -41,12 +41,12 @@ Let’s define a fact table called `fct_sales` which joins `sales.salesorderhead
 
 Based on the business questions that our business user would like answered, we can identify several tables that would contain useful contextual information for our business process: 
 
-- `person.address`
-- `person.countryregion`
-- `production.product`
-- `production.productcategory`
-- `sales.customer`
-- `sales.store`
+- `address`
+- `countryregion`
+- `product`
+- `productcategory`
+- `customer`
+- `store`
 - And many more …
 
 There are different ways we could create the dimension tables. We could use the existing relationships between the tables as depicted in the diagram below. 

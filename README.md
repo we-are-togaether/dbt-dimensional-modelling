@@ -1,10 +1,11 @@
-<img src="docs/img/logo.png" align="right" />
+<img src="docs/img/dbt-duckdb.png" align="right" />
 
 # dbt dimensional modelling tutorial
 
-Welcome to the tutorial on building a Kimball dimensional model with dbt. 
+Welcome to the tutorial on building a Kimball dimensional model with dbt and DuckDB.
+This tutorial is forked from a [github repository](https://github.com/Data-Engineer-Camp/dbt-dimensional-modelling.git), but adjusted according to preferences matching more closely with my own perspective on data modelling.
 
-This tutorial is also featured on the [dbt developer blog](https://docs.getdbt.com/blog/kimball-dimensional-model).
+The original tutorial is also featured on the [dbt developer blog](https://docs.getdbt.com/blog/kimball-dimensional-model).
 
 ## Table of Contents 
 
