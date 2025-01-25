@@ -4,61 +4,63 @@
 
 Before you can get started: 
 
-- You must have either DuckDB or PostgreSQL installed. Choose one, and download and install the database using one of the following links:
-    - Download [DuckDB](https://duckdb.org/docs/installation/index)
-    - Download [PostgreSQL](https://www.postgresql.org/download/)
 - You must have Python 3.8 or above installed
-- You must have dbt version 1.3.0 or above installed
 - You should have a basic understanding of [SQL](https://www.sqltutorial.org/)
 - You should have a basic understanding of [dbt](https://docs.getdbt.com/docs/quickstarts/overview)
 
-### Step 2: Clone the repository
+### Step 2: Clone the repository and set up virtual env
 
-Clone the [github repository](https://github.com/Data-Engineer-Camp/dbt-dimensional-modelling) by running this command in your terminal: 
+1. Navigate to a location on your local machine where you want to clone the repository.
+2. Clone the [github repository](https://github.com/we-are-togaether/dbt-dimensional-modelling.git) by running this command in your terminal: 
 
-```text
-git clone https://github.com/Data-Engineer-Camp/dbt-dimensional-modelling.git
-cd dbt-dimensional-modelling/adventureworks
+```
+git clone https://github.com/we-are-togaether/dbt-dimensional-modelling.git
+```
+3. Change into the local repository
+```
+cd dbt-dimensional-modelling/
+```
+4. Create a virtual environment for your python project dependencies. This will create a .venv folder in your project.
+
+```
+python -m venv .venv
+```
+5. Activate the virtual environment 
+
+**Windows**
+```bash
+.venv/scripts/activate
+```
+**Mac**
+```bash
+source .venv/bin/activate
 ```
 
-### Step 3: Install dbt database adaptors
+### Step 3: Install python dependencies
 
-Depending on which database you’ve chosen, install the relevant database adaptor for your database: 
-
-```text
-# install adaptor for duckdb
-pip install dbt-duckdb
-
-# OR 
-
-# install adaptor for postgresql
-pip install dbt-postgres
+Install the requirements for the project at once.
+```bash
+pip install -r "requirements.txt"
 ```
 
 ### Step 4: Setup dbt profile
+
+Change into the `dbt` folder:
+
+```
+cd adventureworks
+```
 
 The dbt profile (see `adventureworks/profiles.yml`) has already been pre-configured for you. Verify that the configurations are set correctly based on your database credentials: 
 
 ```yaml
 adventureworks:
-  target: duckdb # leave this as duckdb (default), or change this to your chosen database
-
-  # supported databases: duckdb, postgres 
+  target: duckdb # leave this as duckdb (default)
   outputs:
     duckdb: 
      type: duckdb
      path: target/adventureworks.duckdb
      threads: 12
-
-    postgres:  
-      type: postgres
-      host: localhost
-      user: postgres
-      password: postgres
-      port: 5432
-      dbname: adventureworks # create this empty database beforehand 
-      schema: dbo
-      threads: 12
 ```
 
 ### Step 5: Install dbt dependencies
@@ -68,6 +70,7 @@ We use packages like [dbt_utils](https://hub.getdbt.com/dbt-labs/dbt_utils/lates
 ```
 dbt deps 
 ```
+This command will install all depencies for our dbt project.
 
 ### Step 6: Seed your database
 
@@ -76,9 +79,6 @@ We are using [dbt seeds](https://docs.getdbt.com/docs/build/seeds) (see `adventu
 ```text
 # seed duckdb 
 dbt seed --target duckdb
-
-# seed postgres
-dbt seed --target postgres
 ```
 
 ### Step 7: Examine the database source schema
