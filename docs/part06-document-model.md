@@ -1,5 +1,7 @@
 ## Part 6: Document the dimensional model relationships
 
+
+### Step 1: Create ERD
 Let’s make it easier for consumers of our dimensional model to understand the relationships between tables by creating an [Entity Relationship Diagram (ERD)](https://www.visual-paradigm.com/guide/data-modeling/what-is-entity-relationship-diagram/). 
 
 ![](img/target-schema.png)
@@ -7,5 +9,23 @@ Let’s make it easier for consumers of our dimensional model to understand the 
 *Final dimensional model ERD*
 
 The ERD will enable consumers of our dimensional model to quickly identify the keys and relationship type (one-to-one, one-to-many) that need to be used to join tables. 
+
+### Step 2: Explore the documentation in your dbt project.
+One big advantage of dbt is that the documentation is living next to the code, within the same version control.
+
+Explore the documentation of your project by running:
+
+```
+dbt docs generate
+```
+
+Followed by:
+
+```
+dbt docs serve
+```
+
+This will allow you to visualize the documentation, browse the tables and columns, tests that are being carried out on the data, etc...
+Please explore and have fun with it!
 
 [&laquo; Previous](part05-create-fact.md) [Next &raquo;](part07-consume-model.md)

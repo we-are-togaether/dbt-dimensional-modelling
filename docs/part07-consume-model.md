@@ -84,8 +84,5 @@ Congratulations, you have reached the end of this tutorial. If you want to learn
 - [dbt discourse on whether dimensional modelling is still relevant](https://discourse.getdbt.com/t/is-kimball-dimensional-modeling-still-relevant-in-a-modern-data-warehouse/225)
 - [dbt glossary on dimensional modelling](https://docs.getdbt.com/terms/dimensional-modeling)
 
-If you have any questions about the material, please reach out to me on dbt slack (@Jonathan Neo), or on [LinkedIn](https://www.linkedin.com/in/jonneo/). 
-
-*Author's note: The materials in this article were created by [Data Engineer Camp](https://dataengineercamp.com/), a 16-week data engineering bootcamp for professionals looking to transition to data engineering and analytics engineering. The article was written by Jonathan Neo, with editorial and technical guidance from [Kenny Ning](https://www.linkedin.com/in/kenny-ning/) and editorial review from [Paul Hallaste](https://www.linkedin.com/in/paulhallaste/) and [Josh Devlin](https://www.linkedin.com/in/josh-devlin/).*
 
 [&laquo; Previous](part07-consume-model.md)

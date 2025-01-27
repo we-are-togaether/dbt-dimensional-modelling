@@ -5,8 +5,10 @@
 Before you can get started: 
 
 - You must have Python 3.8 or above installed
-- You should have a basic understanding of [SQL](https://www.sqltutorial.org/)
+- You should have a basic understanding of SQL
 - You should have a basic understanding of [dbt](https://docs.getdbt.com/docs/quickstarts/overview)
+- It might be handy to have [DBeaver](https://dbeaver.io/) installed to query your DuckDB. It's also possible to query directly via the command line with DuckDB.\
+  For more information on how to set up DBeaver with DuckDB, see the [DuckDB documentation](https://duckdb.org/docs/guides/sql_editors/dbeaver.html)
 
 ### Step 2: Clone the repository and set up virtual env
 
@@ -80,6 +82,8 @@ We are using [dbt seeds](https://docs.getdbt.com/docs/build/seeds) (see `adventu
 # seed duckdb 
 dbt seed --target duckdb
 ```
+Please note that seeds should not serve as an alternative for proper ingestion.\
+They mainly are used to upload one off mapping files.
 
 ### Step 7: Examine the database source schema
 
