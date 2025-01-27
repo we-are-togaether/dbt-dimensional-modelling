@@ -2,7 +2,19 @@
 
 # dbt dimensional modelling tutorial
 
-Welcome to the tutorial on building a Kimball dimensional model with dbt and DuckDB.
+Welcome to the tutorial on building a dimensional model with dbt and DuckDB.
+The purpose of this tutorial is to let you experience DuckDB and dbt (Core).
+Both of them are extremely powerful and open source.
+
+Using the combination of both tools, allows you the experiment with dbt without the need for 
+compute resources in the cloud. You can simply create your models on your own local machine
+and it won't cost you anything.
+
+The daredevils among us, can delete all the models and start to rebuild them from scratch.
+
+You can find more information on [DuckDB here](https://duckdb.org/).\
+And if you want to know more about dbt, start by looking [here](https://docs.getdbt.com/docs/introduction)
+
 This tutorial is forked from a [github repository](https://github.com/Data-Engineer-Camp/dbt-dimensional-modelling.git), but adjusted according to preferences matching more closely with my own perspective on data modelling.
 
 The original tutorial is also featured on the [dbt developer blog](https://docs.getdbt.com/blog/kimball-dimensional-model).
