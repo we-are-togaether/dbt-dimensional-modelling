@@ -10,7 +10,7 @@ Using the combination of both tools, allows you the experiment with dbt without 
 compute resources in the cloud. You can simply create your models on your own local machine
 and it won't cost you anything.
 
-The daredevils among us, can delete all the models and start to rebuild them from scratch.
+*Note: The **daredevils** among us, can delete all the models and start to rebuild them from scratch.*
 
 You can find more information on [DuckDB here](https://duckdb.org/).\
 And if you want to know more about dbt, start by looking [here](https://docs.getdbt.com/docs/introduction)
@@ -23,12 +23,14 @@ The original tutorial is also featured on the [dbt developer blog](https://docs.
 
 - [Part 0: Understand dimensional modelling concepts](#dimensional-modelling)
 - [Part 1: Set up a mock dbt project and database](docs/part01-setup-dbt-project.md)
-- [Part 2: Identify the business process to model](docs/part02-identify-business-process.md)
-- [Part 3: Identify the fact and dimension tables](docs/part03-identify-fact-dimension.md)
-- [Part 4: Create the dimension tables](docs/part04-create-dimension.md)
-- [Part 5: Create the fact table](docs/part05-create-fact.md)
-- [Part 6: Document the dimensional model relationships](docs/part06-document-model.md)
-- [Part 7: Consume the dimensional model](docs/part07-consume-model.md)
+- [Part 2: Running our first dbt commands](docs/part02-our-first-dbt-commands.md)
+- [Part 3: Identify the business process to model](docs/part03-identify-business-process.md)
+- [Part 4: Identify the fact and dimension tables](docs/part04-identify-fact-dimension.md)
+- [Part 5: Create the staging tables](docs/part05-create-staging.md)
+- [Part 6: Create the dimension tables](docs/part06-create-dimension.md)
+- [Part 7: Create the fact table](docs/part07-create-fact.md)
+- [Part 8: Document the dimensional model relationships](docs/part08-document-model.md)
+- [Part 9: Next steps](docs/part09-next-steps.md)
 
 ## Introduction
 

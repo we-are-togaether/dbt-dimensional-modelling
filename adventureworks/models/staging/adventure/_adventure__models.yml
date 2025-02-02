@@ -133,11 +133,14 @@ models:
         data_type: timestamp with time zone
         description: ""
   - name: stg_adventure__persons
-    description: ""
+    description: "This table contains information about people."
     columns:
       - name: business_entity_id
         data_type: integer
-        description: ""
+        description: "Primary key of the table"
+        data_tests:
+          - unique
+          - not_null
 
       - name: person_type_id
         data_type: varchar
@@ -149,24 +152,7 @@ models:
           EM = Employee (non-sales), 
           VC = Vendor contact, 
           GC = General contact
-
         data_tests:
           - accepted_values: 
               values: ["SC", "IN", "SP", "EM", "VC", "GC"]
-
-      - name: suffix
-        data_type: varchar
-        description: ""
-
-      - name: modified_date
-        data_type: timestamp
-        description: ""
-
-      - name: row_guid
-        data_type: varchar
-        description: ""
-
-      - name: email_promotion
-        data_type: integer
-        description: ""
     

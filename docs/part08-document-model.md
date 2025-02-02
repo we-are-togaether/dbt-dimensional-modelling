@@ -28,4 +28,6 @@ dbt docs serve
 This will allow you to visualize the documentation, browse the tables and columns, tests that are being carried out on the data, etc...
 Please explore and have fun with it!
 
-[&laquo; Previous](part05-create-fact.md) [Next &raquo;](part07-consume-model.md)
+
+
+[&laquo; Previous](part07-create-fact.md) [Next &raquo;](part09-next-steps.md)
