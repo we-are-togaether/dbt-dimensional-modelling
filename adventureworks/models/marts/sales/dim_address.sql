@@ -30,9 +30,9 @@ final as (
         stg_countryregion.country_region_name,
         stg_countryregion.country_region_code
     from stg_address
-    left join stg_stateprovince 
+    left join stg_stateprovince
         on stg_address.state_province_id = stg_stateprovince.state_province_id
-    left join stg_countryregion 
+    left join stg_countryregion
         on stg_stateprovince.country_region_code = stg_countryregion.country_region_code
 
 )

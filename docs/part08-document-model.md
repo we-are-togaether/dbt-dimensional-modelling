@@ -28,4 +28,14 @@ dbt docs serve
 This will allow you to visualize the documentation, browse the tables and columns, tests that are being carried out on the data, etc...
 Please explore and have fun with it!
 
-[&laquo; Previous](part05-create-fact.md) [Next &raquo;](part07-consume-model.md)
+**I want to stress the importance of the lineage**. 
+You can open the lineage by clicking on the `Lineage` at the bottom right hand corner in the dbt documentation.
+
+This is a very powerful feature of dbt that allows you to track the data from the source to the final model. 
+All we needed to do to create this lineage was use the `source` and `ref` macros in our SQL models.
+
+This is a great way to do impact analysis on new changes. It allows you to easily catch downstream impacts.
+
+
+
+[&laquo; Previous](part07-create-fact.md) [Next &raquo;](part09-next-steps.md)

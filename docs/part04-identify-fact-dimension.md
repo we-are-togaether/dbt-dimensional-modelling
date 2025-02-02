@@ -10,7 +10,8 @@ Based on the information provided from the earlier part, we want to create a dim
 
 ### Fact tables
 
-[Fact tables](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/facts-for-measurement/) are database tables that represent a business process in the real world. Each record in the fact table represents a business event such as a: 
+[Fact tables](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/facts-for-measurement/) are database tables that represent a business process in the real world.\
+Each record in the fact table represents a business event such as a: 
 
 - Item sale
 - Website click
@@ -25,7 +26,7 @@ There are two tables in the sales schema that catch our attention. These two tab
 
 *Sales Order Header and Detail*
 
-Let’s define a fact table called `fct_sales` which joins `salesorderheader` and `salesorderdetail` together. Each record in the fact table (also known as the [grain](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/)) is an order detail.
+Let’s define a fact table called `fct_sales` which joins `salesorderheader` and `salesorderdetail` together. Each record in the fact table is an order detail (also known as the [grain](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/)).
 
 ![](img/fct_sales.png)
 
@@ -65,15 +66,13 @@ Instead, we can denormalize the dimension tables by performing joins.
 
 This is known as a star schema and this approach reduces the amount of joins that need to be performed by the consumer of the dimensional model. 
 
-Using the star schema approach, we can identify 6 dimensions as shown below that will help us answer the business questions:
+Using the star schema approach, we can identify 4 dimensions as shown below that will help us answer the business questions:
 
 ![](img/dimension-tables.png)
 
 - `dim_product` : a dimension table that joins `product`, `productsubcategory`, `productcategory`
 - `dim_address` : a dimension table that joins `address`, `stateprovince`, `countryregion`
 - `dim_customer` : a dimension table that joins `customer`, `person`, `store`
-- `dim_credit_card` : a dimension table created from `creditcard`
-- `dim_order_status` : a dimension table created by taking distinct statuses from `salesorderheader`
 - `dim_date` : a specially generated dimension table containing date attributes using the [dbt_date](https://hub.getdbt.com/calogica/dbt_date/latest/) package. 
 
 *Note: We have manually seeded the `dim_date` table since DuckDB is not supported by the dbt_date package.*
@@ -81,6 +80,7 @@ Using the star schema approach, we can identify 6 dimensions as shown below that
 
 *Dimension tables*
 
-In the next part, we use dbt to create the fact and dimension tables we have identified. 
+In the next parts, we use dbt to create the fact and dimension tables we have identified.\
+**But first**, we create the `staging` or `silver` tables in our project.
 
-[&laquo; Previous](part02-identify-business-process.md) [Next &raquo;](part04-create-dimension.md)
+[&laquo; Previous](part03-identify-business-process.md) [Next &raquo;](part05-create-staging.md)

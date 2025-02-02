@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_date
+    columns:
+      - name: date_key
+        description: The integer representation key of the date table, e.g. 20110101 for Jan 1st 2011
+        tests:
+          - unique
+          - not_null
+
+      - name: date_day
+        description: The natural key of the date table 
+        tests:
+          - not_null
+          - unique
+      
+      - name: iso_year
+        description: ISO Year number (Starts on Monday of week containing Jan 4th).
+
+      - name: iso_week
+        description: ISO Week number (Starts on Monday of week containing Jan 4th).
+
+      - name: iso_week_day
+        description: Numeric ISO weekday (Monday = 1, Sunday = 7).

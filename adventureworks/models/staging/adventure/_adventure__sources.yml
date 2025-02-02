@@ -15,7 +15,6 @@ sources:
       - name: productsubcategory
       - name: salesorderdetail
       - name: salesorderheader
-      - name: creditcard 
       - name: store
       - name: salesreason
       - name: customer

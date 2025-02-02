@@ -1,4 +1,4 @@
-## Part 4: Create the dimension tables
+## Part 4: Create the dimension tables (Gold layer)
 
 Let's first create `dim_product` . The other dimension tables will use the same steps that we’re about to go through. 
 
@@ -6,14 +6,18 @@ Let's first create `dim_product` . The other dimension tables will use the same 
 
 Let’s create the new dbt model files that will contain our transformation code. Under [adventureworks/models/marts](../adventureworks/models/marts) , create two files: 
 
+- `_sales__models.yml` : This file will contain our documentation and tests for `dim_product` and the other models underneath the sales folder.
 - `dim_product.sql` : This file will contain our SQL transformation code.
-- `dim_product.yml` : This file will contain our documentation and tests for `dim_product` .
 
-```
+```text
 adventureworks/models/
 └── marts
-    ├── dim_product.sql
-    ├── dim_product.yml
+    ├──common
+    |   ├── _common_models.yml
+    |   └── dim_date.sql
+    └──sales
+        ├── _sales_models.yml
+        └── dim_product.sql
 ```
 
 ### Step 2: Fetch data from the upstream tables
@@ -23,17 +27,17 @@ In `dim_product.sql`, you can select data from the upstream tables using Common 
 ```sql
 with stg_product as (
     select *
-    from {{ ref('product') }}
+    from {{ ref('stg_adventure__products') }}
 ),
 
 stg_product_subcategory as (
     select *
-    from {{ ref('productsubcategory') }}
+    from {{ ref('stg_adventure__productsubcategories') }}
 ),
 
 stg_product_category as (
     select *
-    from {{ ref('productcategory') }}
+    from {{ ref('stg_adventure__productcategories') }}
 )
 
 ... 
@@ -52,9 +56,9 @@ select
     ... 
 from stg_product p
 left join stg_product_subcategory psc
-  on p.productsubcategoryid = psc.productsubcategoryid
+    on P.product_subcategory_id = psc.product_subcategory_id
 left join stg_product_category pc
-  on psc.productcategoryid = pc.productcategoryid
+    on psc.product_category_id = pc.product_category_id
 ```
 
 ### Step 4: Create the surrogate key
@@ -75,13 +79,13 @@ To generate the surrogate key, we use a dbt macro that is provided by the `dbt_u
 ...
 
 select
-    {{ dbt_utils.generate_surrogate_key(['p.productid']) }} as product_key, 
+    {{ dbt_utils.generate_surrogate_key(['p.product_id']) }} as product_key, 
     ... 
 from stg_product p
 left join stg_product_subcategory psc
-  on p.productsubcategoryid = psc.productsubcategoryid
+    on P.product_subcategory_id = psc.product_subcategory_id
 left join stg_product_category pc
-  on psc.productcategoryid = pc.productcategoryid
+    on psc.product_category_id = pc.product_category_id
 ```
 
 ### Step 5: Select dimension table columns
@@ -92,19 +96,27 @@ You can now select the dimension table columns so that they can be used in conju
 ...
 
 select
-    {{ dbt_utils.generate_surrogate_key(['stg_product.productid']) }} as product_key, 
-    p.productid,
-    p.name as product_name,
-    p.productnumber,
-    p.color,
-    p.class,
-    psc.name as product_subcategory_name,
-    pc.name as product_category_name
+  {{ dbt_utils.generate_surrogate_key(['stg_product.productid']) }} as product_key, 
+  p.product_id,
+  p.product_name,
+  p.safety_stock_level,
+  p.finished_goods_flag,
+  p.class,
+  p.make_flag,
+  p.product_number,
+  p.reorder_point,
+  p.standard_cost,
+  p.list_price,
+  p.product_line,
+  p.color,
+  p.sell_start_date,
+  psc.product_subcategory_name,
+  pc.product_category_name
 from stg_product p
-left join stg_product_subcategory psv
-  on p.productsubcategoryid = psc.productsubcategoryid
+left join stg_product_subcategory psc
+    on P.product_subcategory_id = psc.product_subcategory_id
 left join stg_product_category pc
-  on psc.productcategoryid = psc.productcategoryid
+    on psc.product_category_id = pc.product_category_id
 ```
 
 ### Step 6: Choose a materialization type
@@ -117,17 +129,21 @@ You may choose from one of the following materialization types supported by dbt:
 
 It is common for dimension tables to be materialized as `table` or `view` since the data volumes in dimension tables are generally not very large. In this example, we have chosen to go with `table`, and have set the materialization type for all dimensional models in the `marts` schema to `table` in `dbt_project.yml` 
 
-```sql
+```yaml
 models:
   adventureworks:
     marts:
-      +materialized: table
-      +schema: marts
+      common:
+        +materialized: table
+        +schema: common
+      sales:
+        +materialized: table
+        +schema: sales
 ```
 
 ### Step 7: Create model documentation and tests
 
-Alongside our `dim_product.sql` model, we can populate the corresponding `dim_product.yml` file to document and test our model. 
+Alongside our `dim_product.sql` model, we can document and test our model in the `_sales__models.yml`
 
 ```yaml
 version: 2
@@ -153,12 +169,19 @@ models:
 
 ### Step 8: Build dbt models
 
+*Note: If you want to run your dbt project, it's important to disconnect your dbeaver duckdb connection, as you cannot have multiple concurrent connections to your duckdb database.*
+
 Execute the [dbt run](https://docs.getdbt.com/reference/commands/run) and [dbt test](https://docs.getdbt.com/reference/commands/run) commands to run and test your dbt models: 
 
 ```
-dbt run && dbt test 
+dbt run 
+```
+followed by
+
+```
+dbt test 
 ```
 
 We have now completed all the steps to create a dimension table. We can now repeat the same steps to all dimension tables that we have identified earlier. Make sure to create all dimension tables before moving on to the next part. 
 
-[&laquo; Previous](part03-identify-fact-dimension.md) [Next &raquo;](part05-create-fact.md)
+[&laquo; Previous](part05-create-staging.md) [Next &raquo;](part07-create-fact.md)
