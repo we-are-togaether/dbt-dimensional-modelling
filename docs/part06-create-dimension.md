@@ -174,7 +174,12 @@ models:
 Execute the [dbt run](https://docs.getdbt.com/reference/commands/run) and [dbt test](https://docs.getdbt.com/reference/commands/run) commands to run and test your dbt models: 
 
 ```
-dbt run && dbt test 
+dbt run 
+```
+followed by
+
+```
+dbt test 
 ```
 
 We have now completed all the steps to create a dimension table. We can now repeat the same steps to all dimension tables that we have identified earlier. Make sure to create all dimension tables before moving on to the next part. 

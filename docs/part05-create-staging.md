@@ -78,7 +78,7 @@ For instance, `google_analytics__campaigns` is always understandable, whereas to
 Think of it like an oxford comma, the extra clarity is very much worth the extra punctuation.
 - ✅ Plural. SQL, and particularly SQL in dbt, should read as much like prose as we can achieve. 
 We want to lean into the broad clarity and declarative nature of SQL when possible. 
-As such, unless there’s a single order in your `orders`❌ stg_[entity].sql - might be specific enough at first, but will break down in time. Adding the source system into the file name aids in discoverability, and allows understanding where a component model came from even if you aren't looking at the file tree. table, plural is the correct way to describe what is in a table with multiple rows.
+As such, unless there’s a single order in your `orders` table, plural is the correct way to describe what is in a table with multiple rows.
 - ❌ `stg_[entity].sql` - might be specific enough at first, but will break down in time. 
 Adding the source system into the file name aids in discoverability, 
 and allows understanding where a component model came from even if you aren't looking at the file tree.
@@ -114,8 +114,11 @@ select * from renamed
 
 ```
 We’ve organized our model into two CTEs: one pulling in a source table via the [source macro](https://docs.getdbt.com/docs/build/sources#selecting-from-a-source) and the other applying our transformations.
+I want to stress the importance of this `source macro`.\
+This will start to build our DAG (Directed Acyclic Graph) of dependencies, which is crucial for dbt to know the order in which to run our models.
 
-While our later layers of transformation will vary greatly from model to model, every one of our staging models will follow this exact same pattern. As such, we need to make sure the pattern we’ve established is rock solid and consistent.
+While our later layers of transformation will vary greatly from model to model, every one of our staging models will follow this exact same pattern. 
+As such, we need to make sure the pattern we’ve established is rock solid and consistent.
 
 ```sql
 with source as (
