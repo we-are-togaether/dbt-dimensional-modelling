@@ -53,6 +53,9 @@ models:
         data_type: timestamp
         description: ""
 
+  - name: stg_adventure__date 
+    description: '{{ doc("date_table") }}'
+
   - name: stg_adventure__salesreasons
     description: ""
     columns:
@@ -106,32 +109,6 @@ models:
         data_type: timestamp
         description: ""
 
-  - name: stg_adventure__creditcards
-    description: ""
-    columns:
-      - name: credit_card_id
-        data_type: integer
-        description: ""
-
-      - name: card_number
-        data_type: varchar
-        description: ""
-
-      - name: card_type
-        data_type: varchar
-        description: ""
-
-      - name: exp_year
-        data_type: smallint
-        description: ""
-
-      - name: exp_month
-        data_type: smallint
-        description: ""
-
-      - name: modified_date
-        data_type: timestamp with time zone
-        description: ""
   - name: stg_adventure__persons
     description: "This table contains information about people."
     columns:

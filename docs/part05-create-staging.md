@@ -4,6 +4,8 @@ In this part, we create the staging or silver tables in our project.
 This is where we rename the columns from our source system to a more readable format and convert to the correct data types.\
 Additionally, we add any additional columns that we want to be available in our downstream tables that re-use the staging tables.
 
+For more on the best practices of creating staging tables, [refer to the dbt documentation](https://docs.getdbt.com/best-practices/how-we-structure/2-staging)
+
 ### Step 1: Create model folder structure 
 
 Let's first start by creating the folder structure nested under the `models` folder according to the [dbt best practices](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview).
@@ -18,7 +20,7 @@ adventureworks
 ```
 
 According to best practices, we create a subfolder per different source system that we require data from.\
-In this case, this is only the `adventure` source system.\
+In this case, this is only the `adventure` source system.
 
 ```text
 adventureworks
@@ -52,7 +54,7 @@ We distinguish between the following files:
 
 ### Step 2: Create the staging models 
 
-We will work out the staging model for the addresses table in the AdventureWorks database.\
+We will work out the staging model for the addresses table in the AdventureWorks database.
 
 ```text
 adventureworks
@@ -70,7 +72,7 @@ adventureworks
 **File names:**
 Creating a consistent pattern of file naming is crucial in dbt. 
 File names must be unique and correspond to the name of the model when selected and created in the warehouse. 
-We recommend putting as much clear information into the file name as possible, including a prefix for the layer the model exists in, important grouping information, and specific information about the entity or transformation in the model.\
+We recommend putting as much clear information into the file name as possible, including a prefix for the layer the model exists in, important grouping information, and specific information about the entity or transformation in the model.
 - ✅ `stg_[source]__[entity]s.sql` - the double underscore between source system and entity helps visually distinguish the separate parts in the case of a source name having multiple words. 
 For instance, `google_analytics__campaigns` is always understandable, whereas to somebody unfamiliar `google_analytics_campaigns` could be `analytics_campaigns` from the `google` source system as easily as `campaigns` from the `google_analytics` source system. 
 Think of it like an oxford comma, the extra clarity is very much worth the extra punctuation.

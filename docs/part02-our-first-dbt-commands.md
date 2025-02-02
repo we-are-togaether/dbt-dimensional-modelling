@@ -3,7 +3,7 @@
 
 ### Step 1: Setup dbt profile
 
-Change into the `dbt` folder:
+Change into the dbt project folder, i.e. `adventureworks`:
 
 ```
 cd adventureworks
@@ -87,9 +87,9 @@ Examine the database source schema below, paying close attention to:
 
 For more information on how to set up DBeaver with DuckDB, follow the steps in the [DuckDB dbeaver documentation](https://duckdb.org/docs/guides/sql_editors/dbeaver.html).
 
-In step 4, instead of referring to `:memory:` as the in-memory database duckdb option, you must refer to the path of the actual persisted database that we have created during seeding the data in [Step 6](#step-6-seed-your-database).
+In step 4 of this documentation, instead of referring to `:memory:` as the in-memory database duckdb option, you must refer to the path of the actual persisted database that we have created during seeding the data in [Step 6](#step-6-seed-your-database).
 
-We've configured this path in [Step 4](#step-1-setup-dbt-profile) to be `path: target/adventureworks.duckdb`, which is the targetfolder underneath the adventureworks folder.
+We've configured this path in [Step 4](#step-1-setup-dbt-profile) to be `path: target/adventureworks.duckdb`, which is the `target` folder underneath the adventureworks folder.
 
 Therefore step 4 in the [DuckDB dbeaver documentation](https://duckdb.org/docs/guides/sql_editors/dbeaver.html) should be replaced by ![](img/duckdb_dbeaver_conn.png).
 

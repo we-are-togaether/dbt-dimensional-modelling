@@ -2,6 +2,12 @@
 
 In this part, we will wrap things up and provide you with some learning resources to further your knowledge on dbt and dimensional modelling.
 
+### Improvements
+
+- Include unknown member records in the dimension tables.
+- Include a join from fact to dimension tables, instead of creating the surrogate keys in the fact table itself.
+  - Change the surrogate key in the fact table to the unknown member record in the corresponding dimension table if no matching record is found.
+
 ### Additional challenges
 
 - The CEO of Adventureworks has a change request: he now also want to be able to slice the data by 'sales reason' and 'sales reason category'.
