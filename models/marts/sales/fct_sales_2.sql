@@ -1,14 +1,14 @@
 with stg_salesorderheader as (
 
-    SELECT *
-    FROM {{ ref('stg_adventure__salesorderheaders') }}
+    select *
+    from {{ ref('stg_adventure__salesorderheaders') }}
 
 ),
 
 stg_salesorderdetail as (
 
-    SELECT *
-    FROM {{ ref('stg_adventure__salesorderdetails') }}
+    select *
+    from {{ ref('stg_adventure__salesorderdetails') }}
 
 )
 
