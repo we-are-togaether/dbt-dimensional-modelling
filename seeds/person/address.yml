@@ -14,4 +14,3 @@ seeds:
         postalcode: varchar
         spatiallocation: varchar
         addressline1: varchar
-

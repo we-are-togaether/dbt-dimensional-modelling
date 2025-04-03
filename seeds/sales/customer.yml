@@ -9,4 +9,3 @@ seeds:
         personid: integer
         storeid: integer
         territoryid: integer
-

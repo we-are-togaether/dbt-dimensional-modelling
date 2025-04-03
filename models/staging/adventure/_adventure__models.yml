@@ -132,4 +132,3 @@ models:
         data_tests:
           - accepted_values:
               values: ["SC", "IN", "SP", "EM", "VC", "GC"]
-
