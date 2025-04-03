@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: adventure
+    database: adventureworks
+    schema: bronze_adventureworks
+    tables:
+      - name: date
+      - name: address
+      - name: countryregion
+      - name: person
+      - name: stateprovince
+      - name: product
+      - name: productcategory
+      - name: productsubcategory
+      - name: salesorderdetail
+      - name: salesorderheader
+      - name: store
+      - name: salesreason
+      - name: customer
+      - name: salesorderheadersalesreason

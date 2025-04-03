@@ -13,12 +13,12 @@ In this part, we will wrap things up and provide you with some learning resource
 - The CEO of Adventureworks has a change request: he now also want to be able to slice the data by 'sales reason' and 'sales reason category'.
 (hint: have a look at the `salesreason` and `salesorderheadersalesreason` seeds). How would you incorporate this into the existing solution?
 - An even bigger challenge. AdventureWorks now want to report on their `purchasing process`. Could you add this to the existing solution?
-You can find some more information on the source system here: [AdventureWorks source system](https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/home.html). 
+You can find some more information on the source system here: [AdventureWorks source system](https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/home.html).
 You will need to add new seeds, staging tables, and dimensional models for this new process.
 
 ### The end
 
-Congratulations, you have reached the end of this tutorial. If you want to learn more, please see the learning resources below on dimensional modelling. 
+Congratulations, you have reached the end of this tutorial. If you want to learn more, please see the learning resources below on dimensional modelling.
 
 ### Extra Learning resources
 

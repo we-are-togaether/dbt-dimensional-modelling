@@ -1,0 +1,134 @@
+version: 2
+
+models:
+  - name: stg_adventure__addresses
+    description: ""
+    columns:
+      - name: address_id
+        data_type: integer
+        description: ""
+        data_tests:
+          - not_null
+          - unique
+
+      - name: address_line_1
+        data_type: varchar
+        description: ""
+
+      - name: address_line_2
+        data_type: varchar
+        description: ""
+
+      - name: city
+        data_type: varchar
+        description: ""
+
+      - name: state_province_id
+        data_type: integer
+        description: ""
+
+      - name: postal_code
+        data_type: varchar
+        description: ""
+
+      - name: spatial_location
+        data_type: varchar
+        description: ""
+
+  - name: stg_adventure__countryregions
+    description: ""
+    columns:
+      - name: country_region_code
+        data_type: varchar
+        description: ""
+        data_tests:
+          - not_null
+          - unique
+
+      - name: country_region_name
+        data_type: varchar
+        description: ""
+
+      - name: modified_date
+        data_type: timestamp
+        description: ""
+
+  - name: stg_adventure__date
+    description: '{{ doc("date_table") }}'
+
+  - name: stg_adventure__salesreasons
+    description: ""
+    columns:
+      - name: sales_reason_id
+        data_type: integer
+        description: ""
+
+      - name: sales_reason_name
+        data_type: varchar
+        description: ""
+
+      - name: reason_type
+        data_type: varchar
+        description: ""
+
+      - name: modified_date
+        data_type: timestamp
+        description: ""
+
+  - name: stg_adventure__stores
+    description: ""
+    columns:
+      - name: business_entity_id
+        data_type: integer
+        description: ""
+
+      - name: store_name
+        data_type: varchar
+        description: ""
+
+      - name: sales_person_id
+        data_type: integer
+        description: ""
+
+      - name: modified_date
+        data_type: timestamp
+        description: ""
+
+  - name: stg_adventure__salesorderheadersalesreasons
+    description: ""
+    columns:
+      - name: sales_order_id
+        data_type: integer
+        description: ""
+
+      - name: sales_reason_id
+        data_type: integer
+        description: ""
+
+      - name: modified_date
+        data_type: timestamp
+        description: ""
+
+  - name: stg_adventure__persons
+    description: "This table contains information about people."
+    columns:
+      - name: business_entity_id
+        data_type: integer
+        description: "Primary key of the table"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: person_type_id
+        data_type: varchar
+        description: >
+          Primary type of person
+          SC = Store Contact,
+          IN = Individual (retail) customer,
+          SP = Sales person,
+          EM = Employee (non-sales),
+          VC = Vendor contact,
+          GC = General contact
+        data_tests:
+          - accepted_values:
+              values: ["SC", "IN", "SP", "EM", "VC", "GC"]

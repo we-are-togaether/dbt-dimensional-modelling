@@ -2,7 +2,7 @@
 
 ### Step 1: Before you get started / Prerequisites
 
-Before you can get started: 
+Before you can get started:
 
 - You must have Python 3.8 or above installed
 - You should have a basic understanding of SQL
@@ -14,7 +14,7 @@ Before you can get started:
 ### Step 2: Clone the repository and set up virtual env
 
 1. Navigate to a location on your local machine where you want to clone the repository.
-2. Clone the [github repository](https://github.com/we-are-togaether/dbt-dimensional-modelling.git) by running this command in your terminal: 
+2. Clone the [github repository](https://github.com/we-are-togaether/dbt-dimensional-modelling.git) by running this command in your terminal:
 
 ```
 git clone https://github.com/we-are-togaether/dbt-dimensional-modelling.git
@@ -28,7 +28,7 @@ cd dbt-dimensional-modelling/
 ```
 python -m venv .venv
 ```
-5. Activate the virtual environment 
+5. Activate the virtual environment
 
 **Windows**
 ```bash

@@ -1,6 +1,6 @@
 ## Part 3: Identify the fact and dimension tables
 
-Based on the information provided from the earlier part, we want to create a dimensional model that represents that business’ Sales process and also be able to slice and dice the data by: 
+Based on the information provided from the earlier part, we want to create a dimensional model that represents that business’ Sales process and also be able to slice and dice the data by:
 
 - Product category and subcategory
 - Customer
@@ -11,13 +11,13 @@ Based on the information provided from the earlier part, we want to create a dim
 ### Fact tables
 
 [Fact tables](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/facts-for-measurement/) are database tables that represent a business process in the real world.\
-Each record in the fact table represents a business event such as a: 
+Each record in the fact table represents a business event such as a:
 
 - Item sale
 - Website click
 - Production work order
 
-There are two tables in the sales schema that catch our attention. These two tables can be used to create the fact table for the sales process: 
+There are two tables in the sales schema that catch our attention. These two tables can be used to create the fact table for the sales process:
 
 - The `salesorderheader` table contains information about the credit card used in the order, the shipping address, and the customer. Each record in this table represents an order header that contains one or more order details.
 - The `salesorderdetail` table contains information about the product that was ordered, and the order quantity and unit price, which we can use to calculate the revenue. Each record in this table represents a single order detail.
@@ -34,13 +34,13 @@ Let’s define a fact table called `fct_sales` which joins `salesorderheader` an
 
 ### Dimension tables
 
-[Dimension tables](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/dimensions-for-context/) are used to represent contextual or descriptive information for a business process event. Examples of dimensions include: 
+[Dimension tables](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/dimensions-for-context/) are used to represent contextual or descriptive information for a business process event. Examples of dimensions include:
 
-- Customer details: Who is the customer for a particular order number? 
-- Website click location details: Which button is the user clicking on? 
-- Product details: What are the details of the product that was added to the cart? 
+- Customer details: Who is the customer for a particular order number?
+- Website click location details: Which button is the user clicking on?
+- Product details: What are the details of the product that was added to the cart?
 
-Based on the business questions that our business user would like answered, we can identify several tables that would contain useful contextual information for our business process: 
+Based on the business questions that our business user would like answered, we can identify several tables that would contain useful contextual information for our business process:
 
 - `address`
 - `countryregion`
@@ -50,21 +50,21 @@ Based on the business questions that our business user would like answered, we c
 - `store`
 - And many more …
 
-There are different ways we could create the dimension tables. We could use the existing relationships between the tables as depicted in the diagram below. 
+There are different ways we could create the dimension tables. We could use the existing relationships between the tables as depicted in the diagram below.
 
 ![](img/snowflake-schema.png)
 
 *Snowflake schema*
 
-This is known as a snowflake schema design, where the fact table is the centre of the snowflake, and there are many fractals branching off the centre of the snowflake. However, this results in many joins that need to be performed by the consumer of the dimensional model. 
+This is known as a snowflake schema design, where the fact table is the centre of the snowflake, and there are many fractals branching off the centre of the snowflake. However, this results in many joins that need to be performed by the consumer of the dimensional model.
 
-Instead, we can denormalize the dimension tables by performing joins. 
+Instead, we can denormalize the dimension tables by performing joins.
 
 ![](img/star-schema.png)
 
 *Star schema*
 
-This is known as a star schema and this approach reduces the amount of joins that need to be performed by the consumer of the dimensional model. 
+This is known as a star schema and this approach reduces the amount of joins that need to be performed by the consumer of the dimensional model.
 
 Using the star schema approach, we can identify 4 dimensions as shown below that will help us answer the business questions:
 
@@ -73,7 +73,7 @@ Using the star schema approach, we can identify 4 dimensions as shown below that
 - `dim_product` : a dimension table that joins `product`, `productsubcategory`, `productcategory`
 - `dim_address` : a dimension table that joins `address`, `stateprovince`, `countryregion`
 - `dim_customer` : a dimension table that joins `customer`, `person`, `store`
-- `dim_date` : a specially generated dimension table containing date attributes using the [dbt_date](https://hub.getdbt.com/calogica/dbt_date/latest/) package. 
+- `dim_date` : a specially generated dimension table containing date attributes using the [dbt_date](https://hub.getdbt.com/calogica/dbt_date/latest/) package.
 
 *Note: We have manually seeded the `dim_date` table since DuckDB is not supported by the dbt_date package.*
 

@@ -133,3 +133,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+target/
+dbt_packages/
+logs/
+.user.yml
+.venv/
+venv/*
