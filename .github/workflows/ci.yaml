@@ -18,7 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: harupy/find-trailing-whitespace@master
-      - uses: actions/linelint@master
+      - name: Linelint
+        uses: actions/linelint@master
+        id: linelint
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11.7" # Optional if the .python-version file is not defined
