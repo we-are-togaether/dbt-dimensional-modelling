@@ -1,0 +1,11 @@
+version: 2
+
+seeds:
+  - name: productsubcategory
+    config:
+      schema: bronze_adventureworks
+      column_types:
+        productsubcategoryid: integer
+        productcategoryid: integer
+        name: varchar
+        modifieddate: timestamp
