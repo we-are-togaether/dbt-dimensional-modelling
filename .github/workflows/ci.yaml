@@ -1,0 +1,33 @@
+name: "CI"
+
+# This pipeline needs to run on multiple triggers
+# First on Pull request
+# Then when a merge/commit to main has been detected
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  CI:
+    name: "CI testing and linting"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.7" # Optional if the .python-version file is not defined
+
+
+      # Run sqlfluff linting
+      - name: sqlfluff lint
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          dbt deps
+          pre-commit install
+          pre-commit run --all-files
