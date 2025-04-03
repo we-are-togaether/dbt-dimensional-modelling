@@ -17,16 +17,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: harupy/find-trailing-whitespace@master
+      - uses: actions/linelint@master
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11.7" # Optional if the .python-version file is not defined
 
-      # Run linter, black and tests
+
+      # Run sqlfluff linting
       - name: sqlfluff lint
         run: |
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
           dbt deps
-          which sqlfluff
           sqlfluff lint ./models
