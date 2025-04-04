@@ -46,4 +46,17 @@ Install the requirements for the project at once.
 pip install -r "requirements.txt"
 ```
 
+### Step 4: Install pre-commit locally in order to deliver clean code
+
+In this repository, we are working with `pre-commit`.  
+More information on [the official website](https://pre-commit.com/).  
+Pre-commit hooks make sure that checks are executed when you want to locally commit your code.  
+This will improve code quality and make everyone in the project follow the same standards.
+
+To make sure you can make use of pre-commit, run:
+
+```bash
+pre-commit install
+```
+
 [&laquo; Previous](../README.md) [Next &raquo;](part02-our-first-dbt-commands.md)

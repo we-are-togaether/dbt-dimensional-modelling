@@ -3,13 +3,7 @@
 
 ### Step 1: Setup dbt profile
 
-Change into the dbt project folder, i.e. `adventureworks`:
-
-```
-cd adventureworks
-```
-
-The dbt profile (see `adventureworks/profiles.yml`) has already been pre-configured for you. Verify that the configurations are set correctly based on your database credentials:
+The dbt profile (see `profiles.yml`) has already been pre-configured for you. Verify that the configurations are set correctly based on your database credentials:
 
 ```yaml
 adventureworks:
