@@ -1,6 +1,6 @@
 {
     "dbt.enableNewLineagePanel": true,
-    "python.defaultInterpreterPath": "./.venv/scripts/python",
+    "python.defaultInterpreterPath": "./.venv/bin/python",
     "files.associations": {
     // the pattern on the left side can be whatever you want: e.g.
     "*.sql": "jinja-sql", // all .sql files
@@ -8,11 +8,11 @@
     // optional: don't format models in `target/` dir
     "**/target/**": "",
     // I don't personally use these, but you can also have jinja work for `yaml` and `md` files
-    "**/*.yaml": "jinja-yaml",
-     "**/*.yml": "jinja-yaml",
-    "**/docs/**/*.md": "jinja-md"
+    "*.yaml": "yaml",
+     "*.yml": "yaml",
+    "*.md": "markdown"
 },
-"sqlfluff.executablePath": "C:\\Users\\tsyenlu\\repos\\dbt-dimensional-modelling\\.venv\\scripts\\sqlfluff.exe",
+"sqlfluff.executablePath": "C:\\Users\\tsyenlu\\repos\\dbt-dimensional-modelling\\.venv\\bin\\sqlfluff.exe",
 "sqlfluff.dialect": "duckdb",
 "sqlfluff.linter.arguments": [
 
